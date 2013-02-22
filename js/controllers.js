@@ -15,6 +15,8 @@ function TimerController($scope){
 		clock = {minutes: 0,seconds: 0};	
 
 	$scope.inPause = false;
+	$scope.currentTaskPomodoros = 0;
+	$scope.totalPomodoros = 0;
 
 	$scope.play = function(){
 		intervalId = setInterval(function(){
@@ -36,7 +38,8 @@ function TimerController($scope){
 		if(clock.minutes == 25 || clock.minutes == 5){
 			pomodoro();
 		}
-		return ((clock.minutes < 10) ? '0' + clock.minutes : clock.minutes) +':'+ ((clock.seconds < 10) ? '0' + clock.seconds : clock.seconds);
+		return ((clock.minutes < 10) ? '0' + clock.minutes : clock.minutes) +
+		':'+ ((clock.seconds < 10) ? '0' + clock.seconds : clock.seconds);
 	};
 
 	var pomodoro = function(){
@@ -44,14 +47,17 @@ function TimerController($scope){
 			clock.minutes = 0;
 			clock.seconds = 0;
 			$scope.inPause = false;
+			return;
 		}
 		if(!$scope.inPause && clock.minutes == 25){
+			$scope.totalPomodoros++;
+			$scope.currentTaskPomodoros++;
 			clock.minutes = 0;
 			clock.seconds = 0;
 			$scope.inPause = true;
 		}
 	};
-	
+
 	var tick = function(){
 		clock.seconds++;
 		$scope.$apply();
