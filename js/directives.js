@@ -37,15 +37,17 @@ PomodoroApp.directive('pomodorotimer', function(){
 				if(clock[0] == 25 || clock[0] == 5){
 					pomodoro();
 				}
-				return ((clock[0] < 10) ? '0' + clock[0] : clock[0]) +
-				':'+ ((clock[1] < 10) ? '0' + clock[1] : clock[1]);
+				
+				return clock.map(function(e){
+					return e < 10  ? '0' + e : e;
+				}).join(':');
 			};
 
 			var pomodoro = function(){
 				if($scope.breaktime && clock[0] == 5){
 					clock[0] = 0;
 					clock[1] = 0;
-					$scope.breaktime = false;
+					$scope.breaktime = true;
 					return;
 				}
 				if(!$scope.breaktime && clock[0] == 25){
