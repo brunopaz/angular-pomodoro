@@ -47,7 +47,7 @@ PomodoroApp.directive('pomodorotimer', function(){
 				if($scope.breaktime && clock[0] == 5){
 					clock[0] = 0;
 					clock[1] = 0;
-					$scope.breaktime = true;
+					$scope.breaktime = false;
 					return;
 				}
 				if(!$scope.breaktime && clock[0] == 25){
