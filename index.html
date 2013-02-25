@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html ng-app>
+<html ng-app="PomodoroApp">
 	<head>
 		<title>Angular Pomodoro</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<aside class="span3" id="tasks" ng-controller="TaskController">
+			<aside class="span3" ng-controller="TaskController">
 				<form class="inline-form" ng-submit="addTask()">
 					<input ng-model="taskDescription" class="input-medium" type="text" placeholder="Task Description">
 					<button type="submit" class="btn"><i class="icon-plus"></i>Add</button>
@@ -17,25 +17,24 @@
 				<ul>
 					<li ng-repeat="task in tasks">
 			         	<input type="checkbox" ng-model="task.done">
-			          	<span>{{task.description}}</span>
+			          	<span ng-click="selectTask(task)">{{task.description}}</span>
+			          	<a href="#" ng-click="deleteTask(task)"><i class="icon-remove-sign"></i></a>
 			        </li>
 				</ul>
 			</aside>
-			<div class="span9 container" ng-controller="TimerController">
-				<div id="timer">
-					<h4>{{clock()}}</h4>			
-				</div>
-				<div id="controls">
-					<button ng-click="stop()">Stop</button>
-					<button ng-click="play()">Play</button>
-				</div>
+			<div class="span9 container" ng-controller="PomodoroController">
+				<pomodoroTimer></pomodoroTimer>				
 			</div>
 		</div>
 		<footer class="container span12">
 			<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 			<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.js"></script>
 			<script type="text/javascript" src="vendor/angular.js"></script>
+			<script type="text/javascript" src="vendor/angular/angular-resource.js"></script>
+			<script type="text/javascript" src="js/app.js"></script>
 			<script type="text/javascript" src="js/controllers.js"></script>
+			<script type="text/javascript" src="js/services.js"></script>
+			<script type="text/javascript" src="js/directives.js"></script>
 			<p>Powered by <a href="http://angularjs.org">Angular JS</a> and <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a></p>
 		</footer>		
 	</body>

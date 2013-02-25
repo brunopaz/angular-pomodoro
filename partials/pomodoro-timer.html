@@ -1,0 +1,7 @@
+<div>
+	{{clock()}}
+	<div id="controls">
+		<button ng-click="stop()">Stop</button>
+		<button ng-click="play()">{{paused && 'Play' || 'Pause'}}</button>
+	</div>
+</div>

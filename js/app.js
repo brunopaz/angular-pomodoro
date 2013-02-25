@@ -1,0 +1,1 @@
+var PomodoroApp = angular.module('PomodoroApp', ['ngResource']);
